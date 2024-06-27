@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "720554178358",
+    "project_id": "pluto-projekt-50be0",
+    "storage_bucket": "pluto-projekt-50be0.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:720554178358:android:b78183567cd1877c356597",
+        "android_client_info": {
+          "package_name": "com.projektinz.pluto_apk"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDJO2I0Kdzv5117e9SIFsQX2xdfRICbaOg"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
