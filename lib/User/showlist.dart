@@ -16,19 +16,19 @@ class FirestoreService {
     try {
       DocumentSnapshot documentSnapshot = await FirebaseFirestore.instance.collection('children').doc(documentId).get();
       if (documentSnapshot.exists) {
-        // Jeśli dokument istnieje, zwróć wartość pola 'nazwa_pola'
         return documentSnapshot.get('name') as String;
       } else {
-        return ""; // Jeśli dokument nie istnieje, zwróć pusty string
+        return "";
       }
     } catch (e) {
       print("Wystąpił błąd: $e");
-      return ""; // Jeśli wystąpił błąd, zwróć pusty string
+      return "";
     }
   }
 }
 
 class _ShowListState extends State<ShowList> {
+  DateTime? selectedDate;
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -52,13 +52,68 @@ class _ShowListState extends State<ShowList> {
                 return ListTile(
                   title: Text(data['name']),
                   onTap: () {
-                    _showDocumentValue(context, document.id);
+                    _showAlertDialog(document.id);
+                    //_showDocumentValue(context, document.id);
                   },
                 );
             }).toList(),
           );
         },
       ),
+    );
+  }
+
+
+
+  void _showDatePickerDialog() async {
+    final DateTime? pickedDate = await showDatePicker(
+      context: context,
+      initialDate: selectedDate ?? DateTime.now(),
+      firstDate: DateTime(2000),
+      lastDate: DateTime(2100),
+    );
+
+    if (pickedDate != null && pickedDate != selectedDate) {
+      setState(() {
+        selectedDate = pickedDate;
+      });
+      setState((){});
+    }
+  }
+
+  void _showAlertDialog(String documentId) async {
+    String value = await FirestoreService.getDocumentValue(documentId);
+    showDialog(
+      context: context,
+      builder: (BuildContext context) {
+        return AlertDialog(
+          title: Text('Wybierz datę'),
+          content: Column(
+            mainAxisSize: MainAxisSize.min,
+            children: [
+              Text(selectedDate == null
+                  ? "Nie wybrano daty"
+                  : "${selectedDate!.toLocal()}".split(' ')[0]),
+              SizedBox(height: 16),
+              ElevatedButton(
+                onPressed: _showDatePickerDialog,
+                child: Text('Otwórz kalendarz'),
+              ),
+            ],
+          ),
+          actions: [
+            TextButton(
+              onPressed: () async {
+                await DatabaseService().AddDate(selectedDate, value, globalUID!);
+                selectedDate = null;
+                Navigator.of(context).pop();
+                },
+              child: Text('Dodaj'),
+            ),
+            TextButton(onPressed:() => Navigator.of(context).pop(), child: Text('Zamknij'))
+          ],
+        );
+      },
     );
   }
 

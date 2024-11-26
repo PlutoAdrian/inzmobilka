@@ -34,8 +34,6 @@ class _AddChildState extends State<AddChild> {
                 child: Column(
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
-
-
                     Container(
                       padding: EdgeInsets.only(left: 10,right: 10),
                       child: TextFormField(

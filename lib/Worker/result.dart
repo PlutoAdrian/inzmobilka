@@ -31,21 +31,28 @@ class FirestoreService {
 
   static Future<String> getDocumentValue(String? documentId) async {
     try {
-      DocumentSnapshot documentSnapshot = await FirebaseFirestore.instance.collection('children').doc(documentId).get();
+      DocumentSnapshot documentSnapshot = await FirebaseFirestore.instance.collection('date').doc(documentId).get();
       if (documentSnapshot.exists) {
-        // Jeśli dokument istnieje, zwróć wartość pola 'nazwa_pola'
-        return documentSnapshot.get('name') as String;
+        return documentSnapshot.get('child') as String;
       } else {
-        return ""; // Jeśli dokument nie istnieje, zwróć pusty string
+        return "";
       }
     } catch (e) {
       print("Wystąpił błąd: $e");
-      return ""; // Jeśli wystąpił błąd, zwróć pusty string
+      return "";
     }
   }
   static Future<void> deleteDocument(String documentId) async {
     try {
       await FirebaseFirestore.instance.collection('sessions').doc(documentId).delete();
+      print("Dokument został pomyślnie usunięty.");
+    } catch (e) {
+      print("Wystąpił błąd podczas usuwania dokumentu: $e");
+    }
+  }
+  static Future<void> deleteSession(String documentId) async {
+    try {
+      await FirebaseFirestore.instance.collection('date').doc(documentId).delete();
       print("Dokument został pomyślnie usunięty.");
     } catch (e) {
       print("Wystąpił błąd podczas usuwania dokumentu: $e");
@@ -85,18 +92,17 @@ class _ResultState extends State<Result> {
       )
     );
   }
-
 }
-
-
-
-
 
 Future _checkDocumentByQrValue(BuildContext context, String qr) async {
   void _deleteDocument(BuildContext context, String documentId) async {
     await FirestoreService.deleteDocument(documentId);
   }
+  void _deleteSession(BuildContext context, String documentId) async {
+    await FirestoreService.deleteSession(documentId);
+  }
   String? documentId = await FirestoreService.getDocumentIdByQrValue(qr);
+  String? sessionId = qr;
   String? name = await FirestoreService.getDocumentValue(qr);
   if (documentId != null) {
     return showDialog(
@@ -110,6 +116,7 @@ Future _checkDocumentByQrValue(BuildContext context, String qr) async {
               onPressed: () {
                 Navigator.of(context).pop();
                 _deleteDocument(context, documentId);
+                _deleteSession(context, sessionId);
               },
               child: Text("Tak"),
             ),

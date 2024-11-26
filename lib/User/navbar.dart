@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:pluto_apk/User/datelist.dart';
 import 'package:pluto_apk/User/qrlist.dart';
 import 'package:pluto_apk/User/showlist.dart';
 import 'package:pluto_apk/calendar.dart';
@@ -23,9 +24,9 @@ class _NavBarState extends State<NavBar> {
       child: ListView(
         padding: EdgeInsets.zero,
         children: [
-          SizedBox(
-              height: 120,
-              child: UserAccountsDrawerHeader(accountName: Text(globalUID!), accountEmail: Text(globalEmail!))),
+          //SizedBox(
+          //    height: 120,
+          //    child: UserAccountsDrawerHeader(accountName: Text(globalUID!), accountEmail: Text(globalEmail!))),
           ListTile(leading: Icon(Icons.child_care),title: Text('Add child'),onTap: () async {setState(() {
             Navigator.of(context).push(MaterialPageRoute(builder: (context)=>AddChild()));
           });},),
@@ -35,8 +36,11 @@ class _NavBarState extends State<NavBar> {
           ListTile(leading: Icon(Icons.qr_code),title: Text('List of QR'),onTap: () async {setState(() {
             Navigator.of(context).push(MaterialPageRoute(builder: (context)=>QRList()));
           });},),
-          ListTile(leading: Icon(Icons.calendar_month),title: Text('Calendar'),onTap: () async {setState(() {
+          ListTile(leading: Icon(Icons.calendar_month),title: Text('Events'),onTap: () async {setState(() {
             Navigator.of(context).push(MaterialPageRoute(builder: (context)=>Calendar()));
+          });},),
+          ListTile(leading: Icon(Icons.calendar_today),title: Text('Sessions'),onTap: () async {setState(() {
+            Navigator.of(context).push(MaterialPageRoute(builder: (context)=>DateList()));
           });},),
           Divider(),
           ListTile(leading: Icon(Icons.settings),title: Text('Settings'),onTap: () async {setState(() {

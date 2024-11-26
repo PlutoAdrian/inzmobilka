@@ -27,6 +27,9 @@ class _UserHomeState extends State<UserHome> {
           if (snapshot.hasError) {
             return Text("Wystąpił błąd: ${snapshot.error}");
           }
+          if (snapshot.data == null){
+            return Text("Wystąpił błąd: Null check operator used on a null value");
+          }
           return ListView(
             children: snapshot.data!.docs.map((DocumentSnapshot document) {
               Map<String, dynamic> data = document.data() as Map<String, dynamic>;
