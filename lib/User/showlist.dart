@@ -1,8 +1,12 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
+import 'package:pluto_apk/User/addday.dart';
+import 'package:pluto_apk/User/addweek.dart';
 import 'package:pluto_apk/User/generator.dart';
 import 'package:pluto_apk/global/global.dart';
 import 'package:pluto_apk/services/database.dart';
+
+import 'addchild.dart';
 
 class ShowList extends StatefulWidget {
   const ShowList({super.key});
@@ -52,7 +56,7 @@ class _ShowListState extends State<ShowList> {
                 return ListTile(
                   title: Text(data['name']),
                   onTap: () {
-                    _showAlertDialog(document.id);
+                    _showAlert(document.id);
                     //_showDocumentValue(context, document.id);
                   },
                 );
@@ -112,6 +116,35 @@ class _ShowListState extends State<ShowList> {
             ),
             TextButton(onPressed:() => Navigator.of(context).pop(), child: Text('Zamknij'))
           ],
+        );
+      },
+    );
+  }
+
+  void _showAlert(String documentId) async {
+    String value = await FirestoreService.getDocumentValue(documentId);
+    showDialog(
+      context: context,
+      builder: (BuildContext context) {
+        return AlertDialog(
+          title: Text('Dodaj sesje'),
+          content: Container(
+            padding: EdgeInsets.zero,
+            child: ListView(
+              padding: EdgeInsets.zero,
+              children: [
+                ListTile(leading: Icon(Icons.calendar_today),title: Text('Dzień'),onTap: () async {setState(() {
+                  Navigator.of(context).push(MaterialPageRoute(builder: (context)=>AddDay(value: value, globalUID: globalUID)));
+                });},),
+                ListTile(leading: Icon(Icons.calendar_month),title: Text('Tydzień'),onTap: () async {setState(() {
+                  Navigator.of(context).push(MaterialPageRoute(builder: (context)=>AddWeek(value: value, globalUID: globalUID)));
+                });},),
+                ListTile(leading: Icon(Icons.event),title: Text('Event'),onTap: () async {setState(() {
+                  Navigator.of(context).push(MaterialPageRoute(builder: (context)=>AddChild()));
+                });},),
+              ],
+            ),
+          )
         );
       },
     );

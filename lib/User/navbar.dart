@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:pluto_apk/User/datelist.dart';
 import 'package:pluto_apk/User/qrlist.dart';
+import 'package:pluto_apk/User/sessions.dart';
 import 'package:pluto_apk/User/showlist.dart';
 import 'package:pluto_apk/calendar.dart';
 import 'package:pluto_apk/global/global.dart';
@@ -40,8 +41,9 @@ class _NavBarState extends State<NavBar> {
             Navigator.of(context).push(MaterialPageRoute(builder: (context)=>Calendar()));
           });},),
           ListTile(leading: Icon(Icons.calendar_today),title: Text('Sessions'),onTap: () async {setState(() {
-            Navigator.of(context).push(MaterialPageRoute(builder: (context)=>DateList()));
+            Navigator.of(context).push(MaterialPageRoute(builder: (context)=>Sessions()));
           });},),
+
           Divider(),
           ListTile(leading: Icon(Icons.settings),title: Text('Settings'),onTap: () async {setState(() {
             Navigator.of(context).push(MaterialPageRoute(builder: (context)=>Settings()));
