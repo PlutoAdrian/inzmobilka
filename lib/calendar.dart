@@ -20,6 +20,7 @@ class Calendar extends StatefulWidget {
 }
 
 class _CalendarState extends State<Calendar> {
+  final dateFormatter = DateFormat('yyyy-MM-dd');
   late DateTime _focusedDay;
   late DateTime _firstDay;
   late DateTime _lastDay;

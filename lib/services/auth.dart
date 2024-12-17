@@ -7,15 +7,15 @@ import 'package:pluto_apk/services/database.dart';
 class AuthService {
 
   final FirebaseAuth _auth = FirebaseAuth.instance;
-  //create user
+
   UserUID? _userFromFirebaseUser(User? user){
     return user != null ? UserUID(uid: user.uid) : null;
   }
-  //auth stream
+
   Stream<UserUID?> get user {
     return _auth.authStateChanges().map((User? user) => _userFromFirebaseUser(user));
   }
-  //sign in
+
   Future signInWithEmail(String email, String password) async {
     try{
       UserCredential result = await _auth.signInWithEmailAndPassword(email: email, password: password);
@@ -28,13 +28,13 @@ class AuthService {
   }
 
 
-  //register
+
   Future registerWithEmail(String email, String password) async {
     try{
       UserCredential result = await _auth.createUserWithEmailAndPassword(email: email, password: password);
       User? user = result.user;
 
-      //create a doc
+
       await DatabaseService(uid: user!.uid).updateUserData('1');
       return _userFromFirebaseUser(user);
     }catch(e){
@@ -42,9 +42,9 @@ class AuthService {
       return null;
     }
   }
-  //sign out
+
   Future signOut() async {
-    try{
+    try {
       return await _auth.signOut();
     }catch(e){
       return null;

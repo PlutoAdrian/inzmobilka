@@ -1,5 +1,6 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
+import 'package:pluto_apk/User/event.dart';
 import 'package:pluto_apk/User/navbar.dart';
 import 'package:intl/intl.dart';
 
@@ -34,8 +35,12 @@ class _UserHomeState extends State<UserHome> {
             children: snapshot.data!.docs.map((DocumentSnapshot document) {
               Map<String, dynamic> data = document.data() as Map<String, dynamic>;
               return ListTile(
+                onTap: () async {setState(() {
+                  Navigator.of(context).push(MaterialPageRoute(builder: (context)=>Event(id: document.id)));
+                });},
                 title: Text(data['title']),
                 subtitle: Text(dateFormatter.format(data['date'].toDate()).toString()),
+                
               );
             }).toList(),
           );

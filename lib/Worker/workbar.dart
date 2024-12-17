@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:pluto_apk/User/qrlist.dart';
 import 'package:pluto_apk/User/showlist.dart';
 import 'package:pluto_apk/Worker/scanner.dart';
+import 'package:pluto_apk/Worker/sessions.dart';
 import 'package:pluto_apk/Worker/showlistwork.dart';
 import 'package:pluto_apk/calendar.dart';
 import 'package:pluto_apk/global/global.dart';
@@ -34,6 +35,9 @@ class _WorkBarState extends State<WorkBar> {
           });},),
           ListTile(leading: Icon(Icons.calendar_month),title: Text('Calendar'),onTap: () async {setState(() {
             Navigator.of(context).push(MaterialPageRoute(builder: (context)=>Calendar()));
+          });},),
+          ListTile(leading: Icon(Icons.calendar_today),title: Text('Sessions'),onTap: () async {setState(() {
+            Navigator.of(context).push(MaterialPageRoute(builder: (context)=>Sessions()));
           });},),
           Divider(),
           ListTile(leading: Icon(Icons.settings),title: Text('Settings'),onTap: () async {setState(() {

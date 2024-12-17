@@ -58,6 +58,12 @@ class _EditEventState extends State<EditEvent> {
             decoration: const InputDecoration(labelText: 'description'),
           ),
           ElevatedButton(
+            onPressed: (){
+              
+            },
+            child: const Text("Lista"),
+          ),
+          ElevatedButton(
             onPressed: () {
               _addEvent();
             },

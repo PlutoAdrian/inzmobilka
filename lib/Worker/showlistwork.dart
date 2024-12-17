@@ -1,5 +1,6 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
+import 'package:pluto_apk/Worker/showchild.dart';
 import 'package:pluto_apk/global/global.dart';
 
 class ShowListWork extends StatefulWidget {
@@ -47,6 +48,9 @@ class _ShowListWorkState extends State<ShowListWork> {
             children: snapshot.data!.docs.map((DocumentSnapshot document) {
               Map<String, dynamic> data = document.data() as Map<String, dynamic>;
               return ListTile(
+                onTap: () async {setState(() {
+                  Navigator.of(context).push(MaterialPageRoute(builder: (context)=>ShowChild(id: document.id)));
+                });},
                 title: Text(data['name']),
               );
             }).toList(),

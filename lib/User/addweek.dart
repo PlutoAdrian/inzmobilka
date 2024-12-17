@@ -6,7 +6,8 @@ import '../services/database.dart';
 class AddWeek extends StatefulWidget {
   final String value;
   final String? globalUID;
-  const AddWeek({Key? key, required this.value, required this.globalUID}) : super(key: key);
+  final String id;
+  const AddWeek({Key? key, required this.value, required this.globalUID, required this.id}) : super(key: key);
 
   @override
   State<AddWeek> createState() => _AddWeekState();
@@ -117,7 +118,7 @@ class _AddWeekState extends State<AddWeek> {
       for (int i = 0; i < 5; i++) {
         if (selectedDays[i]) {
           DateTime targetDate = currentDate.add(Duration(days: i));
-          await DatabaseService().AddDate(targetDate, widget.value, widget.globalUID!);
+          await DatabaseService().AddDate(targetDate, widget.value, widget.globalUID!, widget.id);
           dates.add(targetDate);
         }
       }

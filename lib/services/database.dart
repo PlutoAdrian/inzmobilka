@@ -21,8 +21,8 @@ class DatabaseService {
     return await FirebaseFirestore.instance.collection('sessions').add({"qr" : qr, "name": name, "parent": parent});
   }
 
-  Future AddDate(DateTime? date, String child, String parent) async {
-    return await FirebaseFirestore.instance.collection('date').add({"date" : date, "child" : child, "parent" : parent});
+  Future AddDate(DateTime? date, String child, String parent, String id) async {
+    return await FirebaseFirestore.instance.collection('date').add({"date" : date, "child" : child, "parent" : parent, "id" : id});
   }
 
 

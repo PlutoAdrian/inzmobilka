@@ -6,7 +6,8 @@ import '../services/database.dart';
 class AddDay extends StatefulWidget {
   final String value;
   final String? globalUID;
-  const AddDay({Key? key, required this.value, required this.globalUID}) : super(key: key);
+  final String id;
+  const AddDay({Key? key, required this.value, required this.globalUID, required this.id,}) : super(key: key);
 
   @override
   State<AddDay> createState() => _AddDayState();
@@ -39,7 +40,7 @@ class _AddDayState extends State<AddDay> {
                 SizedBox(height: 16),
                 TextButton(
                   onPressed: selectedDate == null ? null : () async {
-                  await DatabaseService().AddDate(selectedDate, widget.value, widget.globalUID!);
+                  await DatabaseService().AddDate(selectedDate, widget.value, widget.globalUID!, widget.id);
                   selectedDate = null;
                   setState(() {
                     Navigator.of(context).push(MaterialPageRoute(builder: (context)=>UserHome()));

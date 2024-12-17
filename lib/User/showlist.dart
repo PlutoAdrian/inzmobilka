@@ -2,6 +2,7 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:pluto_apk/User/addday.dart';
 import 'package:pluto_apk/User/addweek.dart';
+import 'package:pluto_apk/User/editchild.dart';
 import 'package:pluto_apk/User/generator.dart';
 import 'package:pluto_apk/global/global.dart';
 import 'package:pluto_apk/services/database.dart';
@@ -49,6 +50,7 @@ class _ShowListState extends State<ShowList> {
           if (snapshot.connectionState == ConnectionState.waiting) {
             return CircularProgressIndicator();
           }
+
 
           return ListView(
             children: snapshot.data!.docs.map((DocumentSnapshot document) {
@@ -108,7 +110,7 @@ class _ShowListState extends State<ShowList> {
           actions: [
             TextButton(
               onPressed: () async {
-                await DatabaseService().AddDate(selectedDate, value, globalUID!);
+                await DatabaseService().AddDate(selectedDate, value, globalUID!, documentId);
                 selectedDate = null;
                 Navigator.of(context).pop();
                 },
@@ -134,13 +136,17 @@ class _ShowListState extends State<ShowList> {
               padding: EdgeInsets.zero,
               children: [
                 ListTile(leading: Icon(Icons.calendar_today),title: Text('Dzień'),onTap: () async {setState(() {
-                  Navigator.of(context).push(MaterialPageRoute(builder: (context)=>AddDay(value: value, globalUID: globalUID)));
+                  Navigator.of(context).push(MaterialPageRoute(builder: (context)=>AddDay(value: value, globalUID: globalUID, id: documentId)));
                 });},),
                 ListTile(leading: Icon(Icons.calendar_month),title: Text('Tydzień'),onTap: () async {setState(() {
-                  Navigator.of(context).push(MaterialPageRoute(builder: (context)=>AddWeek(value: value, globalUID: globalUID)));
+                  Navigator.of(context).push(MaterialPageRoute(builder: (context)=>AddWeek(value: value, globalUID: globalUID, id: documentId)));
                 });},),
                 ListTile(leading: Icon(Icons.event),title: Text('Event'),onTap: () async {setState(() {
                   Navigator.of(context).push(MaterialPageRoute(builder: (context)=>AddChild()));
+                });},),
+                Divider(),
+                ListTile(leading: Icon(Icons.edit),title: Text('Edytuj'),onTap: () async {setState(() {
+                  Navigator.of(context).push(MaterialPageRoute(builder: (context)=>EditChild(value: documentId, globalUID: globalUID)));
                 });},),
               ],
             ),
