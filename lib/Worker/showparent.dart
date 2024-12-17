@@ -58,7 +58,7 @@ class _ShowParentState extends State<ShowParent> {
     if (userDoc.exists) {
       Map<String, dynamic> data = userDoc.data() as Map<String, dynamic>;
       setState(() {
-        name = data['phone'] ?? 'Brak';
+        name = data['name'] ?? 'Brak';
         phone = data['phone'] ?? 'Brak';
       });
     }

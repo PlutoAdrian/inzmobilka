@@ -4,10 +4,12 @@ class Session {
   final String child;
   final DateTime date;
   final String id;
+  final String child_id;
   Session({
     required this.child,
     required this.date,
     required this.id,
+    required this.child_id
   });
 
   factory Session.fromFirestore(DocumentSnapshot<Map<String, dynamic>> snapshot,
@@ -17,6 +19,7 @@ class Session {
       date: data['date'].toDate(),
       child: data['child'],
       id: snapshot.id,
+      child_id: data['id']
     );
   }
 
@@ -24,6 +27,7 @@ class Session {
     return {
       "date": Timestamp.fromDate(date),
       "child": child,
+      "id": child_id
     };
   }
 }

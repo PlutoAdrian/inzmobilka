@@ -2,6 +2,7 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:pluto_apk/User/addday.dart';
 import 'package:pluto_apk/User/addweek.dart';
+import 'package:pluto_apk/User/childevent.dart';
 import 'package:pluto_apk/User/editchild.dart';
 import 'package:pluto_apk/User/generator.dart';
 import 'package:pluto_apk/global/global.dart';
@@ -142,7 +143,7 @@ class _ShowListState extends State<ShowList> {
                   Navigator.of(context).push(MaterialPageRoute(builder: (context)=>AddWeek(value: value, globalUID: globalUID, id: documentId)));
                 });},),
                 ListTile(leading: Icon(Icons.event),title: Text('Event'),onTap: () async {setState(() {
-                  Navigator.of(context).push(MaterialPageRoute(builder: (context)=>AddChild()));
+                  Navigator.of(context).push(MaterialPageRoute(builder: (context)=>ChildEvent(id: documentId, name: value)));
                 });},),
                 Divider(),
                 ListTile(leading: Icon(Icons.edit),title: Text('Edytuj'),onTap: () async {setState(() {

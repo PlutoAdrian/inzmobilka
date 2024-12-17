@@ -24,6 +24,9 @@ class DatabaseService {
   Future AddDate(DateTime? date, String child, String parent, String id) async {
     return await FirebaseFirestore.instance.collection('date').add({"date" : date, "child" : child, "parent" : parent, "id" : id});
   }
+  Future AddEventDate(String id, String child, String parent, DateTime? date,String eventid) async {
+    return await FirebaseFirestore.instance.collection('date').add({"date" : date, "child" : child, "parent" : parent, "id" : id, "event": eventid});
+  }
 
 
 }

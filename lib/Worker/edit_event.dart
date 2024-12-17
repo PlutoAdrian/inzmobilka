@@ -1,11 +1,15 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
+import 'package:pluto_apk/Worker/showchild.dart';
 import 'package:pluto_apk/models/event.dart';
+
+import 'eventlist.dart';
 
 class EditEvent extends StatefulWidget {
   final DateTime firstDate;
   final DateTime lastDate;
   final Event event;
+
   const EditEvent(
       {Key? key,
         required this.firstDate,
@@ -58,9 +62,9 @@ class _EditEventState extends State<EditEvent> {
             decoration: const InputDecoration(labelText: 'description'),
           ),
           ElevatedButton(
-            onPressed: (){
-              
-            },
+            onPressed: () async {setState(() {
+              Navigator.of(context).push(MaterialPageRoute(builder: (context)=>EventList(id: widget.event.id)));
+            });},
             child: const Text("Lista"),
           ),
           ElevatedButton(

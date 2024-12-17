@@ -2,6 +2,7 @@ import 'dart:collection';
 
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
+import 'package:pluto_apk/Worker/showchild.dart';
 import 'package:pluto_apk/models/session_work.dart';
 import 'package:table_calendar/table_calendar.dart';
 import 'package:pluto_apk/models/session.dart';
@@ -139,6 +140,7 @@ class _SessionsState extends State<Sessions> {
                 (session) => SessionWork(
                 session: session,
                 onTap: () async {
+                  Navigator.of(context).push(MaterialPageRoute(builder: (context)=>ShowChild(id: session.child_id)));
                   //_showDocumentValue(context, session.id, session.child);
                 },),
           ),

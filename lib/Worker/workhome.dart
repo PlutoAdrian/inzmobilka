@@ -4,6 +4,8 @@ import 'package:pluto_apk/Worker/workbar.dart';
 import 'package:pluto_apk/services/auth.dart';
 import 'package:intl/intl.dart';
 
+import 'eventlist.dart';
+
 class WorkHome extends StatefulWidget {
   const WorkHome({super.key});
 
@@ -47,6 +49,9 @@ class _WorkHomeState extends State<WorkHome> {
             children: snapshot.data!.docs.map((DocumentSnapshot document) {
               Map<String, dynamic> data = document.data() as Map<String, dynamic>;
               return ListTile(
+                onTap: () async {setState(() {
+                  Navigator.of(context).push(MaterialPageRoute(builder: (context)=>EventList(id: document.id)));
+                });},
                 title: Text(data['title']),
                 subtitle: Text(dateFormatter.format(data['date'].toDate()).toString()),
               );

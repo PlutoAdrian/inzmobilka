@@ -40,9 +40,6 @@ class _WorkBarState extends State<WorkBar> {
             Navigator.of(context).push(MaterialPageRoute(builder: (context)=>Sessions()));
           });},),
           Divider(),
-          ListTile(leading: Icon(Icons.settings),title: Text('Settings'),onTap: () async {setState(() {
-            Navigator.of(context).push(MaterialPageRoute(builder: (context)=>Settings()));
-          });},),
           ListTile(leading: Icon(Icons.exit_to_app),title: Text('Logout'),onTap: () async {
             await _auth.signOut();
           },),

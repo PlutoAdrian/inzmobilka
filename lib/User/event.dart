@@ -1,6 +1,7 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
+import 'package:pluto_apk/User/eventchild.dart';
 
 class Event extends StatefulWidget {
   final String id;
@@ -68,9 +69,9 @@ class _EventState extends State<Event> {
 
             Center(
               child: ElevatedButton(
-                onPressed: () {
-
-                },
+                onPressed: () async {setState(() {
+                  Navigator.of(context).push(MaterialPageRoute(builder: (context)=>EventChild(id: widget.id)));
+                });},
                 child: Text("Dodaj dziecko"),
                 style: ElevatedButton.styleFrom(
                   minimumSize: Size(200, 50),

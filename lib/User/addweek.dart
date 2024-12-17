@@ -124,9 +124,9 @@ class _AddWeekState extends State<AddWeek> {
       }
       currentDate = currentDate.add(Duration(days: 7));
     }
-    setState(() {
-      Navigator.of(context).push(MaterialPageRoute(builder: (context)=>UserHome()));
-    });
+    ScaffoldMessenger.of(context).showSnackBar(
+      SnackBar(content: Text('Sesje zostały dodane')),
+    );
   }
 
 }
