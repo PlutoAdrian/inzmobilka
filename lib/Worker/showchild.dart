@@ -4,7 +4,7 @@ import 'package:pluto_apk/Worker/showparent.dart';
 
 class ShowChild extends StatefulWidget {
   final String id;
-  const ShowChild({Key? key, required this.id}) : super(key: key);
+  const ShowChild({super.key, required this.id});
 
   @override
   State<ShowChild> createState() => _ShowChildState();
@@ -21,16 +21,17 @@ class _ShowChildState extends State<ShowChild> {
     fetchChildData();
   }
 
+  @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(title: Text('Dziecko')),
+      appBar: AppBar(title: const Text('Dziecko')),
       body: Padding(
         padding: const EdgeInsets.all(15.0),
         child: Column(
           children: [
             Container(
               height: 100,
-              padding: EdgeInsets.all(8.0),
+              padding: const EdgeInsets.all(8.0),
               decoration: BoxDecoration(
                 border: Border.all(color: Colors.grey),
                 borderRadius: BorderRadius.circular(8),
@@ -40,9 +41,9 @@ class _ShowChildState extends State<ShowChild> {
                   Expanded(
                     child: Container(
                       alignment: Alignment.center,
-                      padding: EdgeInsets.all(16.0),
+                      padding: const EdgeInsets.all(16.0),
                       color: Colors.grey[300],
-                      child: Text(
+                      child: const Text(
                         'Placeholder',
                         style: TextStyle(fontSize: 16),
                       ),
@@ -51,47 +52,47 @@ class _ShowChildState extends State<ShowChild> {
                 ],
               ),
             ),
-            SizedBox(height: 10),
-            Container(
+            const SizedBox(height: 10),
+            SizedBox(
               width: 4000,
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  Text(
+                  const Text(
                     "Imie",
                     style: TextStyle(fontSize: 10),
                   ),
                   Text(
                     name,
-                    style: TextStyle(fontSize: 18),
+                    style: const TextStyle(fontSize: 18),
                   ),
-                  SizedBox(height: 16),
-                  Text(
+                  const SizedBox(height: 16),
+                  const Text(
                     "Opis",
                     style: TextStyle(fontSize: 10),
                   ),
 
                   Container(
-                    padding: EdgeInsets.all(12),
+                    padding: const EdgeInsets.all(12),
                     decoration: BoxDecoration(
                       borderRadius: BorderRadius.circular(8),
                     ),
                     child: Text(
                       desc,
-                      style: TextStyle(fontSize: 18),
+                      style: const TextStyle(fontSize: 18),
                     ),
                   ),
                 ],
               ),
             ),
 
-            SizedBox(height: 24),
+            const SizedBox(height: 24),
 
             ElevatedButton(
               onPressed: () async {setState(() {
                 Navigator.of(context).push(MaterialPageRoute(builder: (context)=>ShowParent(id: parent)));
               });},
-              child: Text('Rodzic'),
+              child: const Text('Rodzic'),
             ),
           ],
         ),

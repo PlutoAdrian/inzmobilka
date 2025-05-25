@@ -41,10 +41,11 @@ dependencies:
   mobile_scanner: ^4.0.1
   qr_flutter: ^4.1.0
   provider: ^6.1.2
-  flutter_secure_storage: ^4.2.1
   table_calendar: ^3.1.1
   firebase_storage: ^11.7.7
 
+  intl: any
+  simple_animations: ^5.1.0
 dev_dependencies:
   flutter_test:
     sdk: flutter

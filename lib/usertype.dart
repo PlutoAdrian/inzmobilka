@@ -1,10 +1,8 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:pluto_apk/Break.dart';
-import 'package:pluto_apk/User/generator.dart';
 import 'package:pluto_apk/Worker/workhome.dart';
 import 'package:pluto_apk/global/global.dart';
-import 'package:pluto_apk/services/database.dart';
 import 'package:pluto_apk/User/userhome.dart';
 
 import 'home.dart';
@@ -21,14 +19,13 @@ class FirestoreService {
     try {
       DocumentSnapshot documentSnapshot = await FirebaseFirestore.instance.collection('users').doc(documentId).get();
       if (documentSnapshot.exists) {
-        // Jeśli dokument istnieje, zwróć wartość pola 'nazwa_pola'
         return documentSnapshot.get('type') as String;
       } else {
-        return ""; // Jeśli dokument nie istnieje, zwróć pusty string
+        return "";
       }
     } catch (e) {
       print("Wystąpił błąd: $e");
-      return ""; // Jeśli wystąpił błąd, zwróć pusty string
+      return "";
     }
   }
 }
@@ -43,13 +40,13 @@ class _UserTypeState extends State<UserType> {
     });
     switch (globalType){
       case '1':
-        return UserHome();
+        return const UserHome();
       case '2':
-        return WorkHome();
+        return const WorkHome();
       case '3':
-        return Home();
+        return const Home();
       default:
-        return Break();
+        return const Break();
     }
   }
   Future<String> getType(documentId) async {

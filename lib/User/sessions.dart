@@ -7,7 +7,6 @@ import 'package:pluto_apk/models/session.dart';
 import 'package:pluto_apk/models/session_item.dart';
 import 'package:intl/intl.dart';
 
-import '../Worker/edit_event.dart';
 import '../global/global.dart';
 import '../services/database.dart';
 import 'generator.dart';
@@ -73,7 +72,7 @@ class _SessionsState extends State<Sessions> {
       context: context,
       builder: (BuildContext context) {
         return AlertDialog(
-          title: Text("Wygenerować kod QR?"),
+          title: const Text("Wygenerować kod QR?"),
           content: Text("Dla $child"),
           actions: <Widget>[
             TextButton(
@@ -82,13 +81,13 @@ class _SessionsState extends State<Sessions> {
                 Navigator.of(context).pop();
                 Navigator.of(context).push(MaterialPageRoute(builder: (context)=>Generator(code: documentId)));
               },
-              child: Text("Tak"),
+              child: const Text("Tak"),
             ),
             TextButton(
               onPressed: () {
                 Navigator.of(context).pop();
               },
-              child: Text("Nie"),
+              child: const Text("Nie"),
             ),
           ],
         );
@@ -101,13 +100,13 @@ class _SessionsState extends State<Sessions> {
   }
 
 
-  Sessions _calendar = Sessions();
+  final Sessions _calendar = const Sessions();
   @override
   Widget build(BuildContext context) {
     final dateFormatter = DateFormat('yyyy-MM-dd');
     return Scaffold(
       appBar: AppBar(
-        title:Text('Sesje'),
+        title:const Text('Sesje'),
       ),
       body: ListView(
         children: [

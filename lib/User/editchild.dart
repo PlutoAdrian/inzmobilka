@@ -1,14 +1,11 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
-import 'package:pluto_apk/User/userhome.dart';
 
-import '../global/global.dart';
-import '../services/database.dart';
 
 class EditChild extends StatefulWidget {
   final String value;
   final String? globalUID;
-  const EditChild({Key? key, required this.value, required this.globalUID}) : super(key: key);
+  const EditChild({super.key, required this.value, required this.globalUID});
 
   @override
   State<EditChild> createState() => _EditChildState();
@@ -17,8 +14,8 @@ class EditChild extends StatefulWidget {
 class _EditChildState extends State<EditChild> {
   String name = '';
   String desc = '';
-  TextEditingController _nameController = TextEditingController();
-  TextEditingController _descController = TextEditingController();
+  final TextEditingController _nameController = TextEditingController();
+  final TextEditingController _descController = TextEditingController();
 
 
   @override
@@ -33,15 +30,16 @@ class _EditChildState extends State<EditChild> {
     _descController.dispose();
     super.dispose();
   }
+  @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(title: Text('Edycja dziecka')),
+      appBar: AppBar(title: const Text('Edycja dziecka')),
       body: Padding(
         padding: const EdgeInsets.all(16.0),
         child: Column(
           children: [
             Container(
-              padding: EdgeInsets.all(8.0),
+              padding: const EdgeInsets.all(8.0),
               decoration: BoxDecoration(
                 border: Border.all(color: Colors.grey),
                 borderRadius: BorderRadius.circular(8),
@@ -51,43 +49,43 @@ class _EditChildState extends State<EditChild> {
                   Expanded(
                     child: Container(
                       alignment: Alignment.center,
-                      padding: EdgeInsets.all(16.0),
+                      padding: const EdgeInsets.all(16.0),
                       color: Colors.grey[300],
-                      child: Text(
+                      child: const Text(
                         'Placeholder',
                         style: TextStyle(fontSize: 16),
                       ),
                     ),
                   ),
-                  SizedBox(width: 16),
+                  const SizedBox(width: 16),
                   Column(
                     children: [
                       ElevatedButton(
                         onPressed: () {
 
                         },
-                        child: Text('Dodaj'),
+                        child: const Text('Dodaj'),
                       ),
-                      SizedBox(height: 4),
+                      const SizedBox(height: 4),
                       ElevatedButton(
                         onPressed: () {
 
                         },
-                        child: Text('Usuń'),
+                        child: const Text('Usuń'),
                       ),
                     ],
                   ),
                 ],
               ),
             ),
-            SizedBox(height: 5),
+            const SizedBox(height: 5),
 
             TextField(
               controller: _nameController,
               decoration: InputDecoration(labelText: 'Imię', helperText: name.isEmpty ? '' : name),
             ),
 
-            SizedBox(height: 5),
+            const SizedBox(height: 5),
 
             TextField(
               controller: _descController,
@@ -95,17 +93,17 @@ class _EditChildState extends State<EditChild> {
               maxLines: 3,
             ),
 
-            SizedBox(height: 20),
+            const SizedBox(height: 20),
 
             ElevatedButton(
               onPressed: () async {
                 await updateChildData();
                 await fetchChildData();
                 ScaffoldMessenger.of(context).showSnackBar(
-                  SnackBar(content: Text('Dane zostały zapisane')),
+                  const SnackBar(content: Text('Dane zostały zapisane')),
                 );
               },
-              child: Text('Zapisz'),
+              child: const Text('Zapisz'),
             ),
           ],
         ),

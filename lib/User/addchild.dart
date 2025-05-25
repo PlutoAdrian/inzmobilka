@@ -3,7 +3,6 @@ import 'package:pluto_apk/global/global.dart';
 import 'package:pluto_apk/services/auth.dart';
 import 'package:pluto_apk/services/database.dart';
 
-import '../home.dart';
 
 class AddChild extends StatefulWidget {
   const AddChild({super.key});
@@ -23,7 +22,7 @@ class _AddChildState extends State<AddChild> {
   Widget build(BuildContext context) {
     return Scaffold(
         appBar: AppBar(
-        title: Text("Add a child"),
+        title: const Text("Add a child"),
           //actions: <Widget>[
            // ElevatedButton.icon(onPressed: (){Navigator.of(context).push(MaterialPageRoute(builder: (context)=>Home()));}, icon: Icon(Icons.arrow_back), label: Text('Home'))
           //],
@@ -35,7 +34,7 @@ class _AddChildState extends State<AddChild> {
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
                     Container(
-                      padding: EdgeInsets.only(left: 10,right: 10),
+                      padding: const EdgeInsets.only(left: 10,right: 10),
                       child: TextFormField(
                         validator: (val) => val!.isEmpty ? 'Enter a name' : null,
                         onChanged: (val){
@@ -53,7 +52,7 @@ class _AddChildState extends State<AddChild> {
                             await DatabaseService(uid: " ").AddAChild(name, globalUID!);
                           }
                         },
-                        child: Text('Add')),
+                        child: const Text('Add')),
                   ],
             ),
 

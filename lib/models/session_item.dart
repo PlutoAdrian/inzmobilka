@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:pluto_apk/models/event.dart';
 import 'package:pluto_apk/models/session.dart';
 
 class SessionItem extends StatelessWidget {
@@ -7,11 +6,11 @@ class SessionItem extends StatelessWidget {
   final Function() onDelete;
   final Function()? onTap;
   const SessionItem({
-    Key? key,
+    super.key,
     required this.session,
     required this.onDelete,
     this.onTap,
-  }) : super(key: key);
+  });
 
   @override
   Widget build(BuildContext context) {

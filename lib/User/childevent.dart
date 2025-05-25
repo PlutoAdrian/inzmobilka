@@ -1,7 +1,5 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
-import 'package:pluto_apk/User/event.dart';
-import 'package:pluto_apk/User/navbar.dart';
 import 'package:intl/intl.dart';
 
 import '../global/global.dart';
@@ -10,7 +8,7 @@ import '../services/database.dart';
 class ChildEvent extends StatefulWidget {
   final String id;
   final String name;
-  const ChildEvent({Key? key, required this.id, required this.name}) : super(key: key);
+  const ChildEvent({super.key, required this.id, required this.name});
 
   @override
   State<ChildEvent> createState() => _ChildEventState();
@@ -38,7 +36,7 @@ class _ChildEventState extends State<ChildEvent> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text("Event"),
+        title: const Text("Event"),
       ),
       body: StreamBuilder<QuerySnapshot>(
         stream: FirebaseFirestore.instance.collection('events').snapshots(),
@@ -47,7 +45,7 @@ class _ChildEventState extends State<ChildEvent> {
             return Text("Wystąpił błąd: ${snapshot.error}");
           }
           if (snapshot.data == null){
-            return Text("Wystąpił błąd: Null check operator used on a null value");
+            return const Text("Wystąpił błąd: Null check operator used on a null value");
           }
           return ListView(
             children: snapshot.data!.docs.map((DocumentSnapshot document) {
@@ -78,13 +76,13 @@ class _ChildEventState extends State<ChildEvent> {
                 await DatabaseService().AddEventDate(widget.id, value, globalUID!, date.toDate(), documentId);
                 Navigator.of(context).pop();
               },
-              child: Text("Tak"),
+              child: const Text("Tak"),
             ),
             TextButton(
               onPressed: () {
                 Navigator.of(context).pop();
               },
-              child: Text("Nie"),
+              child: const Text("Nie"),
             ),
           ],
         );

@@ -42,7 +42,7 @@ class _DateListState extends State<DateList> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text("Sessions"),
+        title: const Text("Sessions"),
       ),
       body: StreamBuilder<QuerySnapshot>(
         stream: FirebaseFirestore.instance.collection('date').where('parent', isEqualTo: globalUID).snapshots(),
@@ -51,7 +51,7 @@ class _DateListState extends State<DateList> {
             return Text("Wystąpił błąd: ${snapshot.error}");
           }
           if (snapshot.data == null){
-            return Text("Wystąpił błąd: Null check operator used on a null value");
+            return const Text("Wystąpił błąd: Null check operator used on a null value");
           }
           return ListView(
             children: snapshot.data!.docs.map((DocumentSnapshot document) {
@@ -59,7 +59,7 @@ class _DateListState extends State<DateList> {
               return ListTile(
                 title: Text(data['child']),
                 trailing: IconButton(
-                  icon: Icon(Icons.delete),
+                  icon: const Icon(Icons.delete),
                   onPressed: () {
                     _showDelete(context, document.id);
                   },
@@ -79,7 +79,7 @@ class _DateListState extends State<DateList> {
       context: context,
       builder: (BuildContext context) {
         return AlertDialog(
-          title: Text("Wygenerować kod QR?"),
+          title: const Text("Wygenerować kod QR?"),
           content: Text("Dla $child"),
           actions: <Widget>[
             TextButton(
@@ -88,13 +88,13 @@ class _DateListState extends State<DateList> {
                 Navigator.of(context).pop();
                 Navigator.of(context).push(MaterialPageRoute(builder: (context)=>Generator(code: documentId)));
               },
-              child: Text("Tak"),
+              child: const Text("Tak"),
             ),
             TextButton(
               onPressed: () {
                 Navigator.of(context).pop();
               },
-              child: Text("Nie"),
+              child: const Text("Nie"),
             ),
           ],
         );
@@ -108,20 +108,20 @@ class _DateListState extends State<DateList> {
       context: context,
       builder: (BuildContext context) {
         return AlertDialog(
-          title: Text("Do you want to delete?"),
+          title: const Text("Do you want to delete?"),
           actions: <Widget>[
             TextButton(
               onPressed: () {
                 _deleteDocument(context, documentId);
                 Navigator.of(context).pop();
               },
-              child: Text("Yes"),
+              child: const Text("Yes"),
             ),
             TextButton(
               onPressed: () {
                 Navigator.of(context).pop();
               },
-              child: Text("No"),
+              child: const Text("No"),
             ),
           ],
         );

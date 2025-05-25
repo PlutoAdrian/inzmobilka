@@ -1,13 +1,10 @@
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_secure_storage/flutter_secure_storage.dart';
 import 'package:pluto_apk/models/user.dart';
-import 'package:pluto_apk/Worker/scanner.dart';
 import 'package:pluto_apk/services/auth.dart';
 import 'package:pluto_apk/wrapper.dart';
 import 'package:provider/provider.dart';
 import 'firebase_options.dart';
-import 'login.dart';
 
 
 void main() async {
@@ -15,11 +12,11 @@ void main() async {
   await Firebase.initializeApp(
     options: DefaultFirebaseOptions.currentPlatform,
   );
-  runApp(MyApp());
+  runApp(const MyApp());
 }
 
 class MyApp extends StatelessWidget {
-  const MyApp({Key? key}) : super(key: key);
+  const MyApp({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -28,12 +25,12 @@ class MyApp extends StatelessWidget {
       initialData: null,
       child: MaterialApp(
         theme: ThemeData(
-          appBarTheme: AppBarTheme(
+          appBarTheme: const AppBarTheme(
             backgroundColor: Colors.transparent,
             elevation: 0.0,
           )
         ),
-        home: Wrapper(),
+        home: const Wrapper(),
         debugShowCheckedModeBanner: false,
         title: 'Login',
       ),

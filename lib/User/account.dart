@@ -15,8 +15,8 @@ class Account extends StatefulWidget {
 class _AccountState extends State<Account> {
   String name = '';
   String phone = '';
-  TextEditingController _nameController = TextEditingController();
-  TextEditingController _phoneController = TextEditingController();
+  final TextEditingController _nameController = TextEditingController();
+  final TextEditingController _phoneController = TextEditingController();
 
 
   @override
@@ -32,10 +32,11 @@ class _AccountState extends State<Account> {
     super.dispose();
   }
 
+  @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text("My profile"),
+        title: const Text("My profile"),
         //actions: <Widget>[
         // ElevatedButton.icon(onPressed: (){Navigator.of(context).push(MaterialPageRoute(builder: (context)=>Home()));}, icon: Icon(Icons.arrow_back), label: Text('Home'))
         //],
@@ -53,13 +54,13 @@ class _AccountState extends State<Account> {
               decoration: InputDecoration(labelText:'Telefon', helperText: phone.isEmpty ? '' : phone),
               keyboardType: TextInputType.phone,
             ),
-            SizedBox(height: 20),
+            const SizedBox(height: 20),
             ElevatedButton(
               onPressed: () async {
                 await updateUserData();
                 await fetchUserData();
               },
-              child: Text('Zapisz'),
+              child: const Text('Zapisz'),
             ),
           ],
         ),

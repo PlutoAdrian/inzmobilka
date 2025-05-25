@@ -71,13 +71,13 @@ class _CalendarState extends State<Calendar> {
   }
 
 
-  Calendar _calendar = Calendar();
+  final Calendar _calendar = const Calendar();
   @override
   Widget build(BuildContext context) {
     final dateFormatter = DateFormat('yyyy-MM-dd');
     return Scaffold(
       appBar: AppBar(
-        title:Text('Events'),
+        title:const Text('Events'),
       ),
       body: ListView(
         children: [

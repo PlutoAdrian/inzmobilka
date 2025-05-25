@@ -1,13 +1,10 @@
 import 'dart:async';
-import 'package:flutter/material.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:pluto_apk/models/user.dart';
 import 'package:pluto_apk/services/database.dart';
 
 class AuthService {
-
   final FirebaseAuth _auth = FirebaseAuth.instance;
-
   UserUID? _userFromFirebaseUser(User? user){
     return user != null ? UserUID(uid: user.uid) : null;
   }
@@ -26,8 +23,6 @@ class AuthService {
       return null;
     }
   }
-
-
 
   Future registerWithEmail(String email, String password) async {
     try{

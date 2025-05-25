@@ -6,11 +6,11 @@ class EventItem extends StatelessWidget {
   final Function() onDelete;
   final Function()? onTap;
   const EventItem({
-    Key? key,
+    super.key,
     required this.event,
     required this.onDelete,
     this.onTap,
-  }) : super(key: key);
+  });
 
   @override
   Widget build(BuildContext context) {

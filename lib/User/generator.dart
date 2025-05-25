@@ -3,7 +3,7 @@ import 'package:qr_flutter/qr_flutter.dart';
 
 class Generator extends StatefulWidget {
   final String code;
-  Generator({required this.code});
+  const Generator({super.key, required this.code});
 
   @override
   State<Generator> createState() => _GeneratorState();
@@ -14,7 +14,7 @@ class _GeneratorState extends State<Generator> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(title: Text("Generator"),),
+      appBar: AppBar(title: const Text("Generator"),),
       body: Center(
         child: SingleChildScrollView(
           child: Column(
@@ -24,7 +24,7 @@ class _GeneratorState extends State<Generator> {
                   data: widget.code,
                   size:200,
                 ),
-              SizedBox(height: 10,),
+              const SizedBox(height: 10,),
             ],
           ),
         ),

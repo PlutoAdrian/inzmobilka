@@ -39,7 +39,7 @@ class _QRListState extends State<QRList> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('Active QR'),
+        title: const Text('Active QR'),
       ),
       body: StreamBuilder<QuerySnapshot>(
         stream: FirebaseFirestore.instance.collection('sessions').where('parent', isEqualTo: globalUID).snapshots(),
@@ -49,7 +49,7 @@ class _QRListState extends State<QRList> {
           }
 
           if (snapshot.connectionState == ConnectionState.waiting) {
-            return CircularProgressIndicator();
+            return const CircularProgressIndicator();
           }
 
           return ListView(
@@ -58,7 +58,7 @@ class _QRListState extends State<QRList> {
               return ListTile(
                 title: Text(data['name']),
                 trailing: IconButton(
-                  icon: Icon(Icons.delete),
+                  icon: const Icon(Icons.delete),
                   onPressed: () {
                     _showDelete(context, document.id);
                   },
@@ -80,20 +80,20 @@ class _QRListState extends State<QRList> {
       context: context,
       builder: (BuildContext context) {
         return AlertDialog(
-          title: Text("Do you want to delete?"),
+          title: const Text("Do you want to delete?"),
           actions: <Widget>[
             TextButton(
               onPressed: () {
                 _deleteDocument(context, documentId);
                 Navigator.of(context).pop();
               },
-              child: Text("Yes"),
+              child: const Text("Yes"),
             ),
             TextButton(
               onPressed: () {
                 Navigator.of(context).pop();
               },
-              child: Text("No"),
+              child: const Text("No"),
             ),
           ],
         );
@@ -107,14 +107,14 @@ class _QRListState extends State<QRList> {
       context: context,
       builder: (BuildContext context) {
         return AlertDialog(
-          title: Text("Wartość dokumentu"),
+          title: const Text("Wartość dokumentu"),
           content: Text(value),
           actions: <Widget>[
             TextButton(
               onPressed: () {
                 Navigator.of(context).pop();
               },
-              child: Text("Zamknij"),
+              child: const Text("Zamknij"),
             ),
           ],
         );

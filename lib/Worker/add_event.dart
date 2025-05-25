@@ -6,11 +6,10 @@ class AddEvent extends StatefulWidget {
   final DateTime lastDate;
   final DateTime? selectedDate;
   const AddEvent(
-      {Key? key,
+      {super.key,
         required this.firstDate,
         required this.lastDate,
-        this.selectedDate})
-      : super(key: key);
+        this.selectedDate});
 
   @override
   State<AddEvent> createState() => _AddEventState();
@@ -44,7 +43,7 @@ class _AddEventState extends State<AddEvent> {
             },
           ),
           Container(
-            padding: EdgeInsets.all(10),
+            padding: const EdgeInsets.all(10),
             height: 80,
             child: TextField(
               controller: _titleController,
@@ -57,7 +56,7 @@ class _AddEventState extends State<AddEvent> {
             ),
           ),
           Container(
-            padding: EdgeInsets.all(10),
+            padding: const EdgeInsets.all(10),
             height: 80,
             child: TextField(
               controller: _descController,

@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:pluto_apk/Worker/scanner.dart';
-import 'package:qr_flutter/qr_flutter.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 
 class Result extends StatefulWidget {
@@ -69,7 +68,7 @@ class _ResultState extends State<Result> {
         leading: IconButton(onPressed: (){
           widget.closeScreen();
           Navigator.pop(context);
-        }, icon: Icon(Icons.arrow_back_ios_new_rounded, color: Colors.black87,)),
+        }, icon: const Icon(Icons.arrow_back_ios_new_rounded, color: Colors.black87,)),
         centerTitle: true,
         title: const Text(
           "QR Scanner",
@@ -86,7 +85,7 @@ class _ResultState extends State<Result> {
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
-            ElevatedButton(onPressed: () {_checkDocumentByQrValue(context, widget.code);}, child: Text("Show result")),
+            ElevatedButton(onPressed: () {_checkDocumentByQrValue(context, widget.code);}, child: const Text("Show result")),
           ],
         ),
       )
@@ -95,10 +94,10 @@ class _ResultState extends State<Result> {
 }
 
 Future _checkDocumentByQrValue(BuildContext context, String qr) async {
-  void _deleteDocument(BuildContext context, String documentId) async {
+  void deleteDocument(BuildContext context, String documentId) async {
     await FirestoreService.deleteDocument(documentId);
   }
-  void _deleteSession(BuildContext context, String documentId) async {
+  void deleteSession(BuildContext context, String documentId) async {
     await FirestoreService.deleteSession(documentId);
   }
   String? documentId = await FirestoreService.getDocumentIdByQrValue(qr);
@@ -109,22 +108,22 @@ Future _checkDocumentByQrValue(BuildContext context, String qr) async {
       context: context,
       builder: (BuildContext context) {
         return AlertDialog(
-          title: Text("QR poprawny"),
+          title: const Text("QR poprawny"),
           content: Text("Usunąć sesję: $name?"),
           actions: <Widget>[
             TextButton(
               onPressed: () {
                 Navigator.of(context).pop();
-                _deleteDocument(context, documentId);
-                _deleteSession(context, sessionId);
+                deleteDocument(context, documentId);
+                deleteSession(context, sessionId);
               },
-              child: Text("Tak"),
+              child: const Text("Tak"),
             ),
             TextButton(
               onPressed: () {
                 Navigator.of(context).pop();
               },
-              child: Text("Nie"),
+              child: const Text("Nie"),
             ),
           ],
         );
@@ -135,14 +134,14 @@ Future _checkDocumentByQrValue(BuildContext context, String qr) async {
       context: context,
       builder: (BuildContext context) {
         return AlertDialog(
-          title: Text("Kod QR Niepoprawny"),
-          content: Text("Nie znaleziono sesji z podanym kodem QR."),
+          title: const Text("Kod QR Niepoprawny"),
+          content: const Text("Nie znaleziono sesji z podanym kodem QR."),
           actions: <Widget>[
             TextButton(
               onPressed: () {
                 Navigator.of(context).pop();
               },
-              child: Text("Zamknij"),
+              child: const Text("Zamknij"),
             ),
           ],
         );

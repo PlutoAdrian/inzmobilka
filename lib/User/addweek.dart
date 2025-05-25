@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:pluto_apk/User/userhome.dart';
 
 import '../services/database.dart';
 
@@ -7,7 +6,7 @@ class AddWeek extends StatefulWidget {
   final String value;
   final String? globalUID;
   final String id;
-  const AddWeek({Key? key, required this.value, required this.globalUID, required this.id}) : super(key: key);
+  const AddWeek({super.key, required this.value, required this.globalUID, required this.id});
 
   @override
   State<AddWeek> createState() => _AddWeekState();
@@ -23,14 +22,14 @@ class _AddWeekState extends State<AddWeek> {
   Widget build(BuildContext context) {
     return Scaffold(
         appBar: AppBar(
-        title: Text('Day'),
+        title: const Text('Day'),
     ),
       body: Padding(
         padding: const EdgeInsets.all(16.0),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            Text('Wybierz dni tygodnia:'),
+            const Text('Wybierz dni tygodnia:'),
             ToggleButtons(
               isSelected: selectedDays,
               onPressed: (index) {
@@ -45,12 +44,12 @@ class _AddWeekState extends State<AddWeek> {
               ))
                   .toList(),
             ),
-            SizedBox(height: 20),
+            const SizedBox(height: 20),
 
-            Text('Liczba tygodni:'),
+            const Text('Liczba tygodni:'),
             TextField(
               keyboardType: TextInputType.number,
-              decoration: InputDecoration(
+              decoration: const InputDecoration(
                 border: OutlineInputBorder(),
                 hintText: 'Wpisz liczbę tygodni',
               ),
@@ -60,9 +59,9 @@ class _AddWeekState extends State<AddWeek> {
                 });
               },
             ),
-            SizedBox(height: 20),
+            const SizedBox(height: 20),
 
-            Text('Data rozpoczęcia:'),
+            const Text('Data rozpoczęcia:'),
             TextButton(
               onPressed: _selectStartDate,
               child: Text(
@@ -71,17 +70,17 @@ class _AddWeekState extends State<AddWeek> {
                     : "${startDate!.toLocal()}".split(' ')[0],
               ),
             ),
-            SizedBox(height: 30),
+            const SizedBox(height: 30),
 
             Center(
               child: ElevatedButton(
                 onPressed: () async {
                   _generateSchedule();
                   },
-                child: Text('Dodaj'),
+                child: const Text('Dodaj'),
               ),
             ),
-            SizedBox(height: 30),
+            const SizedBox(height: 30),
           ],
         ),
       ),
@@ -106,7 +105,7 @@ class _AddWeekState extends State<AddWeek> {
   Future<void> _generateSchedule() async {
     if (startDate == null || weeks <= 0 || !selectedDays.contains(true)) {
       ScaffoldMessenger.of(context).showSnackBar(
-        SnackBar(content: Text('Uzupełnij wszystkie pola!')),
+        const SnackBar(content: Text('Uzupełnij wszystkie pola!')),
       );
       return;
     }
@@ -122,10 +121,10 @@ class _AddWeekState extends State<AddWeek> {
           dates.add(targetDate);
         }
       }
-      currentDate = currentDate.add(Duration(days: 7));
+      currentDate = currentDate.add(const Duration(days: 7));
     }
     ScaffoldMessenger.of(context).showSnackBar(
-      SnackBar(content: Text('Sesje zostały dodane')),
+      const SnackBar(content: Text('Sesje zostały dodane')),
     );
   }
 

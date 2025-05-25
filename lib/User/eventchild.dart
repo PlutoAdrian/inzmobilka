@@ -1,12 +1,11 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
-import 'package:pluto_apk/User/generator.dart';
 import 'package:pluto_apk/global/global.dart';
 import 'package:pluto_apk/services/database.dart';
 
 class EventChild extends StatefulWidget {
   final String id;
-  const EventChild({Key? key, required this.id}) : super(key: key);
+  const EventChild({super.key, required this.id});
 
   @override
   State<EventChild> createState() => _EventChildState();
@@ -37,10 +36,11 @@ class _EventChildState extends State<EventChild> {
     super.initState();
     fetchEventData();
   }
+  @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('Lista'),
+        title: const Text('Lista'),
       ),
       body: StreamBuilder<QuerySnapshot>(
         stream: FirebaseFirestore.instance.collection('children').where('parent', isEqualTo: globalUID).snapshots(),
@@ -50,7 +50,7 @@ class _EventChildState extends State<EventChild> {
           }
 
           if (snapshot.connectionState == ConnectionState.waiting) {
-            return CircularProgressIndicator();
+            return const CircularProgressIndicator();
           }
 
           return ListView(
@@ -97,13 +97,13 @@ class _EventChildState extends State<EventChild> {
                 await DatabaseService().AddEventDate(documentId, value, globalUID!, date!.toDate(), widget.id);
                 Navigator.of(context).pop();
               },
-              child: Text("Tak"),
+              child: const Text("Tak"),
             ),
             TextButton(
               onPressed: () {
                 Navigator.of(context).pop();
               },
-              child: Text("Nie"),
+              child: const Text("Nie"),
             ),
           ],
         );

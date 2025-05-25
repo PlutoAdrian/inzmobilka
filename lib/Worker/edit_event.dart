@@ -1,6 +1,5 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
-import 'package:pluto_apk/Worker/showchild.dart';
 import 'package:pluto_apk/models/event.dart';
 
 import 'eventlist.dart';
@@ -11,11 +10,10 @@ class EditEvent extends StatefulWidget {
   final Event event;
 
   const EditEvent(
-      {Key? key,
+      {super.key,
         required this.firstDate,
         required this.lastDate,
-        required this.event})
-      : super(key: key);
+        required this.event});
 
   @override
   State<EditEvent> createState() => _EditEventState();

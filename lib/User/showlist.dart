@@ -8,7 +8,6 @@ import 'package:pluto_apk/User/generator.dart';
 import 'package:pluto_apk/global/global.dart';
 import 'package:pluto_apk/services/database.dart';
 
-import 'addchild.dart';
 
 class ShowList extends StatefulWidget {
   const ShowList({super.key});
@@ -39,7 +38,7 @@ class _ShowListState extends State<ShowList> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('List'),
+        title: const Text('List'),
       ),
       body: StreamBuilder<QuerySnapshot>(
         stream: FirebaseFirestore.instance.collection('children').where('parent', isEqualTo: globalUID).snapshots(),
@@ -49,7 +48,7 @@ class _ShowListState extends State<ShowList> {
           }
 
           if (snapshot.connectionState == ConnectionState.waiting) {
-            return CircularProgressIndicator();
+            return const CircularProgressIndicator();
           }
 
 
@@ -94,17 +93,17 @@ class _ShowListState extends State<ShowList> {
       context: context,
       builder: (BuildContext context) {
         return AlertDialog(
-          title: Text('Wybierz datę'),
+          title: const Text('Wybierz datę'),
           content: Column(
             mainAxisSize: MainAxisSize.min,
             children: [
               Text(selectedDate == null
                   ? "Nie wybrano daty"
                   : "${selectedDate!.toLocal()}".split(' ')[0]),
-              SizedBox(height: 16),
+              const SizedBox(height: 16),
               ElevatedButton(
                 onPressed: _showDatePickerDialog,
-                child: Text('Otwórz kalendarz'),
+                child: const Text('Otwórz kalendarz'),
               ),
             ],
           ),
@@ -115,9 +114,9 @@ class _ShowListState extends State<ShowList> {
                 selectedDate = null;
                 Navigator.of(context).pop();
                 },
-              child: Text('Dodaj'),
+              child: const Text('Dodaj'),
             ),
-            TextButton(onPressed:() => Navigator.of(context).pop(), child: Text('Zamknij'))
+            TextButton(onPressed:() => Navigator.of(context).pop(), child: const Text('Zamknij'))
           ],
         );
       },
@@ -130,23 +129,23 @@ class _ShowListState extends State<ShowList> {
       context: context,
       builder: (BuildContext context) {
         return AlertDialog(
-          title: Text('Dodaj sesje'),
+          title: const Text('Dodaj sesje'),
           content: Container(
-            padding: EdgeInsets.zero,
+            width: 100,
+            height: 300,
             child: ListView(
-              padding: EdgeInsets.zero,
               children: [
-                ListTile(leading: Icon(Icons.calendar_today),title: Text('Dzień'),onTap: () async {setState(() {
+                ListTile(leading: const Icon(Icons.calendar_today),title: const Text('Dzień'),onTap: () async {setState(() {
                   Navigator.of(context).push(MaterialPageRoute(builder: (context)=>AddDay(value: value, globalUID: globalUID, id: documentId)));
                 });},),
-                ListTile(leading: Icon(Icons.calendar_month),title: Text('Tydzień'),onTap: () async {setState(() {
+                ListTile(leading: const Icon(Icons.calendar_month),title: const Text('Tydzień'),onTap: () async {setState(() {
                   Navigator.of(context).push(MaterialPageRoute(builder: (context)=>AddWeek(value: value, globalUID: globalUID, id: documentId)));
                 });},),
-                ListTile(leading: Icon(Icons.event),title: Text('Event'),onTap: () async {setState(() {
+                ListTile(leading: const Icon(Icons.event),title: const Text('Event'),onTap: () async {setState(() {
                   Navigator.of(context).push(MaterialPageRoute(builder: (context)=>ChildEvent(id: documentId, name: value)));
                 });},),
-                Divider(),
-                ListTile(leading: Icon(Icons.edit),title: Text('Edytuj'),onTap: () async {setState(() {
+                const Divider(),
+                ListTile(leading: const Icon(Icons.edit),title: const Text('Edytuj'),onTap: () async {setState(() {
                   Navigator.of(context).push(MaterialPageRoute(builder: (context)=>EditChild(value: documentId, globalUID: globalUID)));
                 });},),
               ],
@@ -163,7 +162,7 @@ class _ShowListState extends State<ShowList> {
       context: context,
       builder: (BuildContext context) {
         return AlertDialog(
-          title: Text("Wygenerować kod QR?"),
+          title: const Text("Wygenerować kod QR?"),
           content: Text("Dla $value"),
           actions: <Widget>[
             TextButton(
@@ -172,13 +171,13 @@ class _ShowListState extends State<ShowList> {
                 Navigator.of(context).pop();
                 Navigator.of(context).push(MaterialPageRoute(builder: (context)=>Generator(code: documentId)));
               },
-              child: Text("Tak"),
+              child: const Text("Tak"),
             ),
             TextButton(
               onPressed: () {
                 Navigator.of(context).pop();
               },
-              child: Text("Nie"),
+              child: const Text("Nie"),
             ),
           ],
         );

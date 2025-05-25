@@ -14,14 +14,14 @@ class _BreakState extends State<Break> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text("Opps..."),
+        title: const Text("Opps..."),
       ),body: Center(
       child: Column(children: [
-        Text("Wystąpił problem z authentykacją użytkownika. Zkontaktuj się z administratorem aby dowiedzieć się więcej."),
-        SizedBox(height: 10,),
+        const Text("Wystąpił problem z authentykacją użytkownika. Zkontaktuj się z administratorem aby dowiedzieć się więcej."),
+        const SizedBox(height: 10,),
         ElevatedButton(onPressed: () async {
           await _auth.signOut();
-        },child: Text("Wyloguj"),),
+        },child: const Text("Wyloguj"),),
       ],),
     ),
     );

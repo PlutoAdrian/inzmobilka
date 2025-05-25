@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 
 class ShowParent extends StatefulWidget {
   final String id;
-  const ShowParent({Key? key, required this.id}) : super(key: key);
+  const ShowParent({super.key, required this.id});
 
   @override
   State<ShowParent> createState() => _ShowParentState();
@@ -17,33 +17,34 @@ class _ShowParentState extends State<ShowParent> {
     super.initState();
     fetchParentData();
   }
+  @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(title: Text("Rodzic")),
+      appBar: AppBar(title: const Text("Rodzic")),
       body: Padding(
         padding: const EdgeInsets.all(16.0),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            Text(
+            const Text(
               "Imie",
               style: TextStyle(fontSize: 10),
             ),
             Text(
               name,
-              style: TextStyle(fontSize: 16),
+              style: const TextStyle(fontSize: 16),
             ),
-            SizedBox(height: 16),
-            Text(
+            const SizedBox(height: 16),
+            const Text(
               "Telefon",
               style: TextStyle(fontSize: 10),
             ),
 
             Text(
               phone,
-              style: TextStyle(fontSize: 16),
+              style: const TextStyle(fontSize: 16),
             ),
-            SizedBox(height: 16),
+            const SizedBox(height: 16),
           ],
         ),
       ),

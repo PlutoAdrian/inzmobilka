@@ -6,7 +6,7 @@ import 'global/global.dart';
 class Register extends StatefulWidget {
 
   final Function? toggleView;
-  Register({ this.toggleView });
+  const Register({super.key,  this.toggleView });
 
   @override
   State<Register> createState() => _RegisterState();
@@ -24,9 +24,9 @@ class _RegisterState extends State<Register> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(title: Text("Register"),
+      appBar: AppBar(title: const Text("Register"),
         actions: <Widget>[
-          ElevatedButton.icon(onPressed: (){widget.toggleView!();}, icon: Icon(Icons.person), label: Text('Login'))
+          ElevatedButton.icon(onPressed: (){widget.toggleView!();}, icon: const Icon(Icons.person), label: const Text('Login'))
         ],),
       body: Center(
         child: SingleChildScrollView(
@@ -35,9 +35,9 @@ class _RegisterState extends State<Register> {
             child: Column(
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
-                SizedBox(height: 10,),
+                const SizedBox(height: 10,),
                 Container(
-                  padding: EdgeInsets.only(left: 10,right: 10),
+                  padding: const EdgeInsets.only(left: 10,right: 10),
                   child: TextFormField(
                     validator: (val) => val!.isEmpty ? 'Enter an email' : null,
                     onChanged: (val){
@@ -45,13 +45,13 @@ class _RegisterState extends State<Register> {
                     },
                     decoration: InputDecoration(
                         border: OutlineInputBorder(borderRadius: BorderRadius.circular(15)),
-                        labelText: "Login"
+                        labelText: "Email"
                     ),
                   ),
                 ),
-                SizedBox(height: 10,),
+                const SizedBox(height: 10,),
                 Container(
-                  padding: EdgeInsets.only(left: 10,right: 10),
+                  padding: const EdgeInsets.only(left: 10,right: 10),
                   child: TextFormField(
                     validator: (val) => val!.isEmpty ? 'Enter a password' : null,
                     onChanged: (val){
@@ -74,9 +74,9 @@ class _RegisterState extends State<Register> {
                         }
                       }
                     },
-                    child: Text('Register')),
-                SizedBox(height: 10.0,),
-                Text(error,style: TextStyle(color: Colors.red, fontSize: 14),)
+                    child: const Text('Register')),
+                const SizedBox(height: 10.0,),
+                Text(error,style: const TextStyle(color: Colors.red, fontSize: 14),)
               ],
             ),
           ),

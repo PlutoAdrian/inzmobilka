@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:mobile_scanner/mobile_scanner.dart';
-import 'package:pluto_apk/User/generator.dart';
 import 'package:pluto_apk/Worker/result.dart';
 
 const bgColor = Color(0xfffafafa);
@@ -27,10 +26,10 @@ class _QRScanState extends State<QRScan> {
       appBar: AppBar(),
       body: Container(
         width: double.infinity,
-        padding: EdgeInsets.all(16),
+        padding: const EdgeInsets.all(16),
         child: Column(
           children: [
-            Expanded(child: Container( child: Text("Scanner"),)),
+            Expanded(child: Container( child: const Text("Scanner"),)),
             Expanded(
                 flex: 4,
                 child: Stack(
