@@ -2,6 +2,7 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:pluto_apk/User/event.dart';
 import 'package:intl/intl.dart';
+import 'package:pluto_apk/Worker/eventlist.dart';
 
 class Eventlist extends StatefulWidget {
   const Eventlist({super.key});
@@ -18,7 +19,7 @@ class _EventlistState extends State<Eventlist> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text("Events"),
+        title: const Text("Wydarzenia"),
       ),
       body: StreamBuilder<QuerySnapshot>(
         stream: FirebaseFirestore.instance.collection('events').snapshots(),
@@ -26,19 +27,15 @@ class _EventlistState extends State<Eventlist> {
           if (snapshot.hasError) {
             return Text("Wystąpił błąd: ${snapshot.error}");
           }
-          if (snapshot.data == null){
-            return const Text("Wystąpił błąd: Null check operator used on a null value");
-          }
           return ListView(
             children: snapshot.data!.docs.map((DocumentSnapshot document) {
               Map<String, dynamic> data = document.data() as Map<String, dynamic>;
               return ListTile(
                 onTap: () async {setState(() {
-                  Navigator.of(context).push(MaterialPageRoute(builder: (context)=>Event(id: document.id)));
+                  Navigator.of(context).push(MaterialPageRoute(builder: (context)=>EventList(id: document.id)));
                 });},
                 title: Text(data['title']),
                 subtitle: Text(dateFormatter.format(data['date'].toDate()).toString()),
-
               );
             }).toList(),
           );

@@ -1,5 +1,6 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
+import 'package:pluto_apk/User/addchild.dart';
 import 'package:pluto_apk/User/addday.dart';
 import 'package:pluto_apk/User/addweek.dart';
 import 'package:pluto_apk/User/childevent.dart';
@@ -38,7 +39,7 @@ class _ShowListState extends State<ShowList> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text('List'),
+        title: const Text('Lista dzieci'),
       ),
       body: StreamBuilder<QuerySnapshot>(
         stream: FirebaseFirestore.instance.collection('children').where('parent', isEqualTo: globalUID).snapshots(),
@@ -53,7 +54,7 @@ class _ShowListState extends State<ShowList> {
 
 
           return ListView(
-            children: snapshot.data!.docs.map((DocumentSnapshot document) {
+            children:[ ...snapshot.data!.docs.map((DocumentSnapshot document) {
               Map<String, dynamic> data = document.data() as Map<String, dynamic>;
                 return ListTile(
                   title: Text(data['name']),
@@ -63,7 +64,19 @@ class _ShowListState extends State<ShowList> {
                   },
                 );
             }).toList(),
+            ListTile(
+              title: Text(
+                'Dodaj dziecko',
+                style: TextStyle(color: Colors.blue),
+              ),
+              leading: Icon(Icons.add, color: Colors.blue),
+              onTap: () async {setState(() {
+                Navigator.of(context).push(MaterialPageRoute(builder: (context)=>const AddChild()));
+              });}
+            ),
+          ],
           );
+
         },
       ),
     );

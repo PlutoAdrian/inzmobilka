@@ -77,7 +77,7 @@ class _CalendarState extends State<Calendar> {
     final dateFormatter = DateFormat('yyyy-MM-dd');
     return Scaffold(
       appBar: AppBar(
-        title:const Text('Events'),
+        title:const Text('Kalendarz'),
       ),
       body: ListView(
         children: [
